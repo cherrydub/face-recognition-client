@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function ImageLinkForm() {
+export default function ImageLinkForm({ setInput }) {
+  const [tempInput, setTempInput] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setInput(tempInput);
+    setTempInput("");
+  };
+
+  const handleInputChange = (event) => {
+    setTempInput(event.target.value);
+  };
+
   return (
     <div>
       <p className="text-center">
@@ -8,10 +20,21 @@ export default function ImageLinkForm() {
       </p>
       <div className="flex justify-center">
         <div className="p-4 rounded-lg shadow-2xl">
-          <input type="text" className="w-70 grow p-2 border border-white" />
-          <button className="w-30 p-2 grow bg-violet-700 border border-white">
-            Detect
-          </button>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="add URL here"
+              value={tempInput}
+              onChange={handleInputChange}
+              className="w-70 grow p-2 border border-white"
+            />
+            <button
+              type="submit"
+              className="w-30 p-2 grow bg-violet-700 border border-white"
+            >
+              Detect
+            </button>
+          </form>
         </div>
       </div>
     </div>
