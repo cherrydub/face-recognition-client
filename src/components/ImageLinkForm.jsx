@@ -30,7 +30,7 @@ export default function ImageLinkForm({ setInput }) {
             />
             <button
               type="submit"
-              className="w-30 p-2 grow bg-violet-700 border border-white"
+              className="w-30 p-2 grow bg-violet-500 hover:bg-violet-700 border border-white"
             >
               Detect
             </button>
