@@ -8,7 +8,7 @@ import FaceRecognition from "./components/FaceRecognition";
 import Rank from "./components/Rank";
 import ParticlesBg from "particles-bg";
 import SignIn from "./components/Login/SignIn";
-const apiKey = process.env.REACT_APP_API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [input, setInput] = useState("");
