@@ -14,6 +14,7 @@ function App() {
   const [input, setInput] = useState("");
   const [imgData, setImgData] = useState([]);
   const [box, setBox] = useState({});
+  const [boxes, setBoxes] = useState([]);
 
   const calculateFaceBox = (data) => {
     const firstFace = data[0];
@@ -21,16 +22,37 @@ function App() {
     const imgWidth = Number(img.width);
     const imgHeight = Number(img.height);
     const boundingBox = firstFace.region_info.bounding_box;
-    console.log("width/height", imgWidth, imgHeight);
-    console.log("all data: :", data);
-    console.log("first data:", firstFace.region_info.bounding_box);
-    console.log("img data:", imgData);
+
+    const boundingBoxes = data.map((eachData) => {
+      return eachData.region_info.bounding_box;
+    });
+
+    const boundingBoxesCalculated = boundingBoxes.map((eachData) => {
+      return {
+        leftCol: eachData.left_col * imgWidth,
+        rightCol: imgWidth - eachData.right_col * imgWidth,
+        topRow: eachData.top_row * imgHeight,
+        bottomRow: imgHeight - eachData.bottom_row * imgHeight,
+      };
+    });
+
+    // console.log("width/height", imgWidth, imgHeight);
+    // console.log("all data: :", data);
+    // console.log("first data:", firstFace.region_info.bounding_box);
+    // console.log("img data:", imgData);
+    // console.log("bounding box", boundingBox);
+    console.log("all bounding boxes:", boundingBoxes);
+    console.log("calculated ones here", boundingBoxesCalculated);
+
+    setBoxes(boundingBoxesCalculated);
+
     setBox({
       leftCol: boundingBox.left_col * imgWidth,
       rightCol: imgWidth - boundingBox.right_col * imgWidth,
       topRow: boundingBox.top_row * imgHeight,
       bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
     });
+
     // return {
     //   leftCol: boundingBox.left_col * imgWidth,
     //   rightCol: imgWidth - boundingBox.right_col * imgWidth,
@@ -38,6 +60,32 @@ function App() {
     //   bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
     // };
   };
+
+  //   //uncomment this out
+  //   const calculateFaceBox = (data) => {
+  //     const firstFace = data[0];
+  //     const img = document.getElementById("inputImg");
+  //     const imgWidth = Number(img.width);
+  //     const imgHeight = Number(img.height);
+  //     const boundingBox = firstFace.region_info.bounding_box;
+  //     console.log("width/height", imgWidth, imgHeight);
+  //     console.log("all data: :", data);
+  //     console.log("first data:", firstFace.region_info.bounding_box);
+  //     console.log("img data:", imgData);
+  //     setBox({
+  //       leftCol: boundingBox.left_col * imgWidth,
+  //       rightCol: imgWidth - boundingBox.right_col * imgWidth,
+  //       topRow: boundingBox.top_row * imgHeight,
+  //       bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
+  //     });
+  //     // return {
+  //     //   leftCol: boundingBox.left_col * imgWidth,
+  //     //   rightCol: imgWidth - boundingBox.right_col * imgWidth,
+  //     //   topRow: boundingBox.top_row * imgHeight,
+  //     //   bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
+  //     // };
+  //   };
+  // //until here
 
   // const displayFaceBox = (box) => {
   //   setBox({ box: box });
@@ -118,7 +166,12 @@ function App() {
       <Rank />
       <ImageLinkForm setInput={setInput} />
 
-      <FaceRecognition input={input} imgData={imgData} box={box} />
+      <FaceRecognition
+        input={input}
+        imgData={imgData}
+        box={box}
+        boxes={boxes}
+      />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function FaceRecognition({ input, imgData, box }) {
+export default function FaceRecognition({ input, imgData, box, boxes }) {
+  // console.log("here is the boxxxx broski", box);
   if (imgData === undefined) {
     return (
       <div className="self-center text-center flex justify-center flex-col items-center">
@@ -32,15 +33,20 @@ export default function FaceRecognition({ input, imgData, box }) {
                 width={"300px"}
               />
               {/* {imgData} */}
-              <div
-                className="bounding-box"
-                style={{
-                  top: box.topRow,
-                  right: box.rightCol,
-                  bottom: box.bottomRow,
-                  left: box.leftCol,
-                }}
-              ></div>
+
+              {boxes.map((box) => {
+                return (
+                  <div
+                    className="bounding-box"
+                    style={{
+                      top: box.topRow,
+                      right: box.rightCol,
+                      bottom: box.bottomRow,
+                      left: box.leftCol,
+                    }}
+                  ></div>
+                );
+              })}
             </div>
           </>
         ) : null}
