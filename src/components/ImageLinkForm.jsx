@@ -5,6 +5,16 @@ export default function ImageLinkForm({ setInput }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Validate the input URL using regex
+    const imageExtensions = /\.(jpg|jpeg|png|gif)$/i;
+    if (!imageExtensions.test(tempInput)) {
+      alert(
+        "Please enter a valid image URL ending with .jpg, .jpeg, .png, or .gif"
+      );
+      return;
+    }
+
     setInput(tempInput);
     setTempInput("");
   };
@@ -14,7 +24,7 @@ export default function ImageLinkForm({ setInput }) {
   };
 
   return (
-    <div>
+    <div className="">
       <p className="text-center">
         This Magic Brain will detect faces in your pictures. Give it a try.
       </p>

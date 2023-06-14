@@ -7,21 +7,22 @@ import ImageLinkForm from "./components/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition";
 import Rank from "./components/Rank";
 import ParticlesBg from "particles-bg";
-import SignIn from "./components/Login/SignIn";
+import SignIn from "./components/SignIn";
+import Register from "./components/Register";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 function App() {
   const [input, setInput] = useState("");
   const [imgData, setImgData] = useState([]);
-  const [box, setBox] = useState({});
   const [boxes, setBoxes] = useState([]);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const [route, setRoute] = useState("signin");
 
   const calculateFaceBox = (data) => {
-    const firstFace = data[0];
     const img = document.getElementById("inputImg");
     const imgWidth = Number(img.width);
     const imgHeight = Number(img.height);
-    const boundingBox = firstFace.region_info.bounding_box;
 
     const boundingBoxes = data.map((eachData) => {
       return eachData.region_info.bounding_box;
@@ -36,56 +37,18 @@ function App() {
       };
     });
 
-    // console.log("width/height", imgWidth, imgHeight);
-    // console.log("all data: :", data);
-    // console.log("first data:", firstFace.region_info.bounding_box);
-    // console.log("img data:", imgData);
-    // console.log("bounding box", boundingBox);
-    console.log("all bounding boxes:", boundingBoxes);
-    console.log("calculated ones here", boundingBoxesCalculated);
-
     setBoxes(boundingBoxesCalculated);
-
-    setBox({
-      leftCol: boundingBox.left_col * imgWidth,
-      rightCol: imgWidth - boundingBox.right_col * imgWidth,
-      topRow: boundingBox.top_row * imgHeight,
-      bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
-    });
-
-    // return {
-    //   leftCol: boundingBox.left_col * imgWidth,
-    //   rightCol: imgWidth - boundingBox.right_col * imgWidth,
-    //   topRow: boundingBox.top_row * imgHeight,
-    //   bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
-    // };
   };
 
-  //   //uncomment this out
-  //   const calculateFaceBox = (data) => {
-  //     const firstFace = data[0];
-  //     const img = document.getElementById("inputImg");
-  //     const imgWidth = Number(img.width);
-  //     const imgHeight = Number(img.height);
-  //     const boundingBox = firstFace.region_info.bounding_box;
-  //     console.log("width/height", imgWidth, imgHeight);
-  //     console.log("all data: :", data);
-  //     console.log("first data:", firstFace.region_info.bounding_box);
-  //     console.log("img data:", imgData);
-  //     setBox({
-  //       leftCol: boundingBox.left_col * imgWidth,
-  //       rightCol: imgWidth - boundingBox.right_col * imgWidth,
-  //       topRow: boundingBox.top_row * imgHeight,
-  //       bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
-  //     });
-  //     // return {
-  //     //   leftCol: boundingBox.left_col * imgWidth,
-  //     //   rightCol: imgWidth - boundingBox.right_col * imgWidth,
-  //     //   topRow: boundingBox.top_row * imgHeight,
-  //     //   bottomRow: imgHeight - boundingBox.bottom_row * imgHeight,
-  //     // };
-  //   };
-  // //until here
+  const onRouteChange = (route) => {
+    if (route === "signout") {
+      setIsSignedIn(false);
+      setRoute("signin");
+    } else if (route === "home") {
+      setIsSignedIn(true);
+    }
+    setRoute(route);
+  };
 
   // const displayFaceBox = (box) => {
   //   setBox({ box: box });
@@ -159,19 +122,31 @@ function App() {
 
   return (
     <>
-      <ParticlesBg color="#ffffff" num={200} type="cobweb" bg={true} />
-      {/* <SignIn /> */}
-      <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm setInput={setInput} />
-
-      <FaceRecognition
-        input={input}
-        imgData={imgData}
-        box={box}
-        boxes={boxes}
+      <ParticlesBg color="#808080" num={200} type="cobweb" bg={true} />
+      <Navigation
+        onRouteChange={onRouteChange}
+        route={route}
+        isSignedIn={isSignedIn}
+        setIsSignedIn={setIsSignedIn}
       />
+
+      <Logo route={route} onRouteChange={onRouteChange} />
+
+      {route === "home" ? (
+        <>
+          <Rank />
+          <ImageLinkForm setInput={setInput} />
+          <FaceRecognition input={input} imgData={imgData} boxes={boxes} />
+        </>
+      ) : route === "signin" ? (
+        <SignIn
+          // isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}
+          onRouteChange={onRouteChange}
+          route={route}
+        />
+      ) : (
+        <Register onRouteChange={onRouteChange} />
+      )}
     </>
   );
 }

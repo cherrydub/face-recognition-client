@@ -2,6 +2,7 @@ import React from "react";
 
 export default function FaceRecognition({ input, imgData, box, boxes }) {
   // console.log("here is the boxxxx broski", box);
+  //will have to update since counting faces now
   if (imgData === undefined) {
     return (
       <div className="self-center text-center flex justify-center flex-col items-center">
@@ -18,7 +19,7 @@ export default function FaceRecognition({ input, imgData, box, boxes }) {
     );
   } else {
     return (
-      <div className="text-center flex flex-col items-center">
+      <div className=" text-center flex flex-col items-center">
         {input.length !== 0 && imgData !== undefined ? (
           <>
             <div>{`${imgData.length} faces detected on image:`}</div>
