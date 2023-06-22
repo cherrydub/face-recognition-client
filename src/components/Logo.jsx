@@ -15,7 +15,7 @@ export default function Logo({ route, onRouteChange }) {
           >
             <img
               onClick={() => onRouteChange("home")}
-              className="text-center cursor-pointer hover:bg-purple-700 hover:rounded-lg"
+              className="text-center cursor-pointer"
               src={brain}
               alt="brain logo"
               width="100px"

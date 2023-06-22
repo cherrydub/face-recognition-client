@@ -6,15 +6,28 @@ export default function SignIn({ isSignedIn, setIsSignedIn, onRouteChange }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetch("http://localhost:3000/signin", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === "success") {
+          console.log("changing in console");
+          onRouteChange("home");
+          console.log("Sign in submitted with details:", email, password);
+        } else {
+          console.log("not success? error");
+        }
+      });
     // Handle sign-in logic here
     // setIsSignedIn(true);
-    onRouteChange("home");
-    console.log(
-      "Sign in submitted with details:",
-      email,
-      password,
-      "signed in status:"
-    );
+    // onRouteChange("home");
+    // console.log("Sign in submitted with details:", email, password);
   };
 
   return (

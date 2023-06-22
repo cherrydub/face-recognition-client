@@ -19,6 +19,14 @@ function App() {
 
   const [route, setRoute] = useState("signin");
 
+  //this instaed of that component mount shit
+  useEffect(() => {
+    fetch("http://localhost:3000/")
+      .then((response) => response.json())
+      .then((data) => console.log("here is the data:", data))
+      .catch((error) => console.log("Error:", error));
+  }, []);
+
   const calculateFaceBox = (data) => {
     const img = document.getElementById("inputImg");
     const imgWidth = Number(img.width);
