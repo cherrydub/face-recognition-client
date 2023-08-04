@@ -38,6 +38,7 @@ export default function FaceRecognition({ input, imgData, boxes }) {
               {boxes.map((box) => {
                 return (
                   <div
+                    key={crypto.randomUUID()}
                     className="bounding-box"
                     style={{
                       top: box.topRow,

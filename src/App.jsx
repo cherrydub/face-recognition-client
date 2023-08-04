@@ -11,6 +11,7 @@ import ParticlesBg from "particles-bg";
 import SignIn from "./components/SignIn";
 import Register from "./components/Register";
 const apiKey = import.meta.env.VITE_API_KEY;
+const serverApi = import.meta.env.SERVER_API;
 
 function App() {
   const [input, setInput] = useState("");
@@ -30,7 +31,7 @@ function App() {
 
   //this instaed of that component mount shit
   useEffect(() => {
-    fetch("http://localhost:3000/")
+    fetch(serverApi)
       .then((response) => response.json())
       .then((data) => console.log("here is the data:", data))
       .catch((error) => console.log("Error:", error));
