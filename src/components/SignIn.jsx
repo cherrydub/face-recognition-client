@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const serverApi =
-  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
+const serverApi = "https://face-recognition-api-6468.onrender.com/";
 
 export default function SignIn({
   isSignedIn,

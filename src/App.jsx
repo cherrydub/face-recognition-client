@@ -11,8 +11,7 @@ import ParticlesBg from "particles-bg";
 import SignIn from "./components/SignIn";
 import Register from "./components/Register";
 const apiKey = import.meta.env.VITE_API_KEY;
-const serverApi =
-  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
+const serverApi = "https://face-recognition-api-6468.onrender.com/";
 
 function App() {
   const [input, setInput] = useState("");
