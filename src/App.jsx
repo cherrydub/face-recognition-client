@@ -121,7 +121,7 @@ function App() {
       const data = parsedResult.outputs[0].data.regions;
       setImgData(data);
 
-      const putResponse = await axios.put("http://localhost:3000/image", {
+      const putResponse = await axios.put(`${serverApi}/image`, {
         id: user.id,
       });
 
