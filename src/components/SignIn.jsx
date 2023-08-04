@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const serverApi = "https://face-recognition-api-6468.onrender.com/";
+const serverApi = "https://face-recognition-api-6468.onrender.com";
 
 export default function SignIn({
   isSignedIn,
