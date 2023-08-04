@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const serverApi = import.meta.env.SERVER_API;
 
 export default function Register({
   isSignedIn,
@@ -17,7 +18,7 @@ export default function Register({
     // setIsSignedIn(true);
 
     axios
-      .post("http://localhost:3000/register", {
+      .post(`${serverApi}/register`, {
         name: name,
         email: email,
         password: password,

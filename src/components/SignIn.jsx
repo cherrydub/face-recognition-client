@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const serverApi = import.meta.env.SERVER_API;
 
 export default function SignIn({
   isSignedIn,
@@ -14,7 +15,7 @@ export default function SignIn({
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/signin", {
+      .post(`${serverApi}/signin`, {
         email: email,
         password: password,
       })
