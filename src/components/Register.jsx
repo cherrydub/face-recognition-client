@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-const serverApi = import.meta.env.VITE_REACT_APP_NODE_SERVER_URL;
+
+const serverApi =
+  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
 
 export default function Register({
   isSignedIn,

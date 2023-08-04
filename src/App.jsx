@@ -11,7 +11,8 @@ import ParticlesBg from "particles-bg";
 import SignIn from "./components/SignIn";
 import Register from "./components/Register";
 const apiKey = import.meta.env.VITE_API_KEY;
-const serverApi = import.meta.env.VITE_REACT_APP_NODE_SERVER_URL;
+const serverApi =
+  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
 
 function App() {
   const [input, setInput] = useState("");
@@ -33,7 +34,7 @@ function App() {
   useEffect(() => {
     fetch(serverApi)
       .then((response) => response.json())
-      .then((data) => console.log("here is the data:", data))
+      .then((data) => console.log("here is everyones data:", data))
       .catch((error) => console.log("Error:", error));
   }, []);
 
@@ -121,7 +122,7 @@ function App() {
       const data = parsedResult.outputs[0].data.regions;
       setImgData(data);
 
-      const putResponse = await axios.put(`${serverApi}/image`, {
+      const putResponse = await axios.put("http://localhost:3000/image", {
         id: user.id,
       });
 
