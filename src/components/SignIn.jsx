@@ -1,29 +1,64 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-export default function SignIn({ isSignedIn, setIsSignedIn, onRouteChange }) {
+export default function SignIn({
+  isSignedIn,
+  setIsSignedIn,
+  onRouteChange,
+  setUser,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/signin", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+
+    axios
+      .post("http://localhost:3000/signin", {
         email: email,
         password: password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data === "success") {
-          console.log("changing in console");
+      })
+      .then((response) => response.data)
+      .then((user) => {
+        if (user.id) {
+          setUser({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            entries: user.entries,
+            joined: user.joined,
+          });
+          console.log("changing in console", user);
           onRouteChange("home");
           console.log("Sign in submitted with details:", email, password);
         } else {
           console.log("not success? error");
         }
+      })
+      .catch((error) => {
+        console.log("error:", error);
       });
+
+    //without axios
+    // fetch("http://localhost:3000/signin", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: password,
+    //   }),
+    // })
+    //       .then((response) => response.json())
+    //       .then((data) => {
+    //         if (data === "success") {
+    //           console.log("changing in console");
+    //           onRouteChange("home");
+    //           console.log("Sign in submitted with details:", email, password);
+    //         } else {
+    //           console.log("not success? error");
+    //         }
+    //       });
+
     // Handle sign-in logic here
     // setIsSignedIn(true);
     // onRouteChange("home");

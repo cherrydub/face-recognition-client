@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import "./App.css";
 import Navigation from "./components/Navigation";
@@ -16,8 +17,16 @@ function App() {
   const [imgData, setImgData] = useState([]);
   const [boxes, setBoxes] = useState([]);
   const [isSignedIn, setIsSignedIn] = useState(false);
-
   const [route, setRoute] = useState("signin");
+  const [user, setUser] = useState({
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: "",
+  });
+
+  //do the load user thing here for registered users
 
   //this instaed of that component mount shit
   useEffect(() => {
@@ -51,17 +60,15 @@ function App() {
   const onRouteChange = (route) => {
     if (route === "signout") {
       setIsSignedIn(false);
+      setInput("");
+      setImgData([]);
+      setBoxes([]);
       setRoute("signin");
     } else if (route === "home") {
       setIsSignedIn(true);
     }
     setRoute(route);
   };
-
-  // const displayFaceBox = (box) => {
-  //   setBox({ box: box });
-  //   console.log("box here:", box);
-  // };
 
   useEffect(() => {
     if (input !== "") {
@@ -112,6 +119,15 @@ function App() {
       const parsedResult = JSON.parse(responseText);
       const data = parsedResult.outputs[0].data.regions;
       setImgData(data);
+
+      const putResponse = await axios.put("http://localhost:3000/image", {
+        id: user.id,
+      });
+
+      setUser((prevInfo) => ({
+        ...prevInfo,
+        entries: putResponse.data,
+      }));
     } catch (error) {
       console.log("Error:", error);
     }
@@ -128,6 +144,9 @@ function App() {
   //   .then((data) => console.log(`There are ${data.length} faces:`, data))
   //   .catch((error) => console.log("Error: ", error));
 
+  console.log("boolean:", Boolean(user.id));
+  console.log("user stuff here:", user);
+
   return (
     <>
       <ParticlesBg color="#808080" num={200} type="cobweb" bg={true} />
@@ -142,7 +161,7 @@ function App() {
 
       {route === "home" ? (
         <>
-          <Rank />
+          <Rank user={user} />
           <ImageLinkForm setInput={setInput} />
           <FaceRecognition input={input} imgData={imgData} boxes={boxes} />
         </>
@@ -151,9 +170,10 @@ function App() {
           // isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn}
           onRouteChange={onRouteChange}
           route={route}
+          setUser={setUser}
         />
       ) : (
-        <Register onRouteChange={onRouteChange} />
+        <Register onRouteChange={onRouteChange} setUser={setUser} />
       )}
     </>
   );

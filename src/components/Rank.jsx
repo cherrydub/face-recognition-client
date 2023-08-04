@@ -1,10 +1,11 @@
 import React from "react";
 
-export default function Rank() {
+export default function Rank({ user }) {
   return (
     <>
-      {/* <div className="text-white text-center">Your rank is...</div>
-      <div className="text-white text-center">#42</div> */}
+      <div className="text-black text-center">
+        {user.name}, your entries count is {user.entries}
+      </div>
     </>
   );
 }

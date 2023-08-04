@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FaceRecognition({ input, imgData, box, boxes }) {
+export default function FaceRecognition({ input, imgData, boxes }) {
   // console.log("here is the boxxxx broski", box);
   //will have to update since counting faces now
   if (imgData === undefined) {

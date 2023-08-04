@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-export default function Register({ isSignedIn, setIsSignedIn, onRouteChange }) {
+export default function Register({
+  isSignedIn,
+  setIsSignedIn,
+  onRouteChange,
+  setUser,
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,13 +15,27 @@ export default function Register({ isSignedIn, setIsSignedIn, onRouteChange }) {
     e.preventDefault();
     // Handle sign-in logic here
     // setIsSignedIn(true);
+
+    axios
+      .post("http://localhost:3000/register", {
+        name: name,
+        email: email,
+        password: password,
+      })
+      .then((response) => response.data)
+      .then((user) => {
+        setUser({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          entries: user.entries,
+          joined: user.joined,
+        });
+
+        console.log(user, "these are the user stuff");
+      });
     onRouteChange("signin");
-    console.log(
-      "Sign in submitted with details:",
-      email,
-      password,
-      "signed in status:"
-    );
+    console.log("Register submitted with details:", email, password, name);
   };
 
   return (
