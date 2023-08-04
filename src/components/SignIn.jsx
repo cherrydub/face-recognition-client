@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-const serverApi = import.meta.env.SERVER_API;
+const serverApi = import.meta.env.REACT_APP_NODE_SERVER_URL;
 
 export default function SignIn({
   isSignedIn,
