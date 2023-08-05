@@ -27,14 +27,14 @@ export default function Navigation({
           <p></p>
           <p>
             <span
-              className="cursor-pointer hover:text-violet-700"
+              className="cursor-pointer hover:text-violet-700 font-bold"
               onClick={() => onRouteChange("register")}
             >
               Register{" "}
             </span>{" "}
             |{" "}
             <span
-              className="cursor-pointer hover:text-violet-700"
+              className="cursor-pointer hover:text-violet-700 font-bold"
               onClick={() => onRouteChange("signin")}
             >
               {" "}

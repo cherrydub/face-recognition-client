@@ -10,6 +10,8 @@ import Rank from "./components/Rank";
 import ParticlesBg from "particles-bg";
 import SignIn from "./components/SignIn";
 import Register from "./components/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const apiKey = import.meta.env.VITE_API_KEY;
 const serverApi =
   import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
@@ -160,6 +162,7 @@ function App() {
       />
 
       <Logo route={route} onRouteChange={onRouteChange} />
+      <ToastContainer />
 
       {route === "home" ? (
         <>
