@@ -24,7 +24,7 @@ export default function ImageLinkForm({ setInput }) {
   };
 
   return (
-    <div className="">
+    <div className="bg-white bg-opacity-75">
       <p className="text-center">
         This Magic Brain will detect faces in your pictures. Give it a try.
       </p>
@@ -36,7 +36,7 @@ export default function ImageLinkForm({ setInput }) {
               placeholder="add URL here"
               value={tempInput}
               onChange={handleInputChange}
-              className="w-70 grow p-2 border border-white"
+              className="w-90 grow p-2 border border-white"
             />
             <button
               type="submit"
