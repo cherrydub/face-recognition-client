@@ -12,7 +12,7 @@ export default function Navigation({
         <nav className="text-right">
           <p></p>
           <p
-            className="cursor-pointer hover:text-violet-700"
+            className="cursor-pointer hover:text-violet-700 font-bold"
             onClick={() => onRouteChange("signout")}
           >
             Sign Out
