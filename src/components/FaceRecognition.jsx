@@ -22,7 +22,7 @@ export default function FaceRecognition({ input, imgData, boxes }) {
       <div className=" text-center flex flex-col items-center">
         {input.length !== 0 && imgData !== undefined ? (
           <>
-            <div>{`${imgData.length} faces detected on image:`}</div>
+            <div className="font-bold bg-purple-500 text-white">{`${imgData.length} faces detected on image:`}</div>
             <div className="absolute mt-6">
               <img
                 id="inputImg"
