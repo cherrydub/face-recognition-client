@@ -23,7 +23,7 @@ export default function Logo({ route, onRouteChange }) {
 
   if (route === "signin" || route === "register" || route === "signout") {
     return (
-      <div className="mx-4">
+      <div className="m-4">
         <Tilt className="bg-white opacity-90 text-center">
           <div className="text-center flex items-center justify-center align-center">
             <img src={brain} alt="brain logo" width="100px" />
@@ -83,8 +83,8 @@ export default function Logo({ route, onRouteChange }) {
     );
   } else {
     return (
-      <div className="mx-4">
-        <Tilt className="bg-white opacity-75 inline-block text-center w-full">
+      <div className="m-4">
+        <div className="bg-white opacity-75 inline-block text-center w-full">
           <div className="text-center flex items-center justify-center align-center">
             <img
               className="text-center"
@@ -93,7 +93,7 @@ export default function Logo({ route, onRouteChange }) {
               width="100px"
             />
           </div>
-        </Tilt>
+        </div>
       </div>
     );
   }
