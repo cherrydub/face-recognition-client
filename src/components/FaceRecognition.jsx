@@ -7,7 +7,7 @@ export default function FaceRecognition({ input, imgData, boxes }) {
     return (
       <div className="self-center text-center flex justify-center flex-col items-center">
         <>
-          <p className="font-bold bg-red-500 text-white">
+          <p className="font-bold bg-red-500 text-white px-2">
             Sorry no faces detected, please try another URL
           </p>
           <img
@@ -24,7 +24,7 @@ export default function FaceRecognition({ input, imgData, boxes }) {
       <div className=" text-center flex flex-col items-center">
         {input.length !== 0 && imgData !== undefined ? (
           <>
-            <div className="font-bold bg-purple-500 text-white">{`${imgData.length} faces detected on image:`}</div>
+            <div className="font-bold bg-purple-500 text-white px-2">{`${imgData.length} faces detected on image:`}</div>
             <div className="absolute mt-6">
               <img
                 id="inputImg"
