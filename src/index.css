@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+button {
+  border-radius: 10px;
+}
+
 /* body {
   background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
 } */
