@@ -81,7 +81,7 @@ export default function SignIn({
   return (
     <div className=" flex justify-center items-start h-screen">
       <form
-        className="bg-white bg-opacity-100 border-2 rounded-lg w-96 shadow-md px-8 pt-6 pb-8 "
+        className="bg-white border-2 rounded-lg w-96 shadow-md px-8 pt-6 pb-8 "
         onSubmit={handleSubmit}
       >
         <h1 className="text-center font-bold">SIGN IN</h1>

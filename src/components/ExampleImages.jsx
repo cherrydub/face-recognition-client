@@ -9,7 +9,7 @@ export default function ExampleImages() {
       text: () => text,
     });
     clipboard.on("success", () => {
-      toast.success("Copied to clipboard!");
+      toast.success("Copied to clipboard!", { autoClose: 500 });
       clipboard.destroy();
     });
     clipboard.on("error", () => {

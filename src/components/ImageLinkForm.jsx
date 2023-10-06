@@ -13,7 +13,7 @@ export default function ImageLinkForm({ setInput }) {
   const handlePasteFromClipboard = () => {
     navigator.clipboard.readText().then((clipboardText) => {
       setTempInput(clipboardText); // Set clipboard content directly
-      toast.success("Pasted from clipboard!");
+      toast.success("Pasted from clipboard!", { autoClose: 500 });
     });
   };
 
