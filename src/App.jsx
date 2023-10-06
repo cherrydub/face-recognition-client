@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Toaster, toast } from "sonner";
 
 import "./App.css";
 import Navigation from "./components/Navigation";
@@ -36,8 +37,9 @@ function App() {
   useEffect(() => {
     fetch(serverApi)
       .then((response) => response.json())
-      .then((data) => console.log("here is everyones data:", data))
-      .catch((error) => console.log("Error:", error));
+      // .then((data) => console.log("here is everyones data:", data))
+      .then((data) => console.log("data fetched"))
+      .catch((error) => console.error("Error:", error));
   }, []);
 
   const calculateFaceBox = (data) => {
@@ -148,11 +150,12 @@ function App() {
   //   .then((data) => console.log(`There are ${data.length} faces:`, data))
   //   .catch((error) => console.log("Error: ", error));
 
-  console.log("boolean:", Boolean(user.id));
-  console.log("user stuff here:", user);
+  // console.log("boolean:", Boolean(user.id));
+  // console.log("user stuff here:", user);
 
   return (
     <>
+      <Toaster richColors />
       <ParticlesBg color="#808080" num={200} type="cobweb" bg={true} />
       <Navigation
         onRouteChange={onRouteChange}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Toaster, toast } from "sonner";
 
 const serverApi =
   import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
@@ -14,6 +15,7 @@ export default function SignIn({
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
+    toast.loading("signing in...", { duration: 0 });
     e.preventDefault();
 
     axios
@@ -31,15 +33,18 @@ export default function SignIn({
             entries: user.entries,
             joined: user.joined,
           });
-          console.log("changing in console", user);
+          toast.dismiss();
+          toast.success("signed in");
+          // console.log("changing in console", user);
           onRouteChange("home");
-          console.log("Sign in submitted with details:", email, password);
+          // console.log("Sign in submitted with details:", email, password);
         } else {
           console.log("not success? error");
         }
       })
       .catch((error) => {
-        console.log("error:", error);
+        toast.error("catch error signing in");
+        console.error("error:", error);
       });
 
     //without axios

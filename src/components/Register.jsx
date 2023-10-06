@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Toaster, toast } from "sonner";
 
 const serverApi =
   import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
@@ -15,6 +16,7 @@ export default function Register({
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
+    toast.loading("registering...");
     e.preventDefault();
     // Handle sign-in logic here
     // setIsSignedIn(true);
@@ -34,11 +36,12 @@ export default function Register({
           entries: user.entries,
           joined: user.joined,
         });
-
-        console.log(user, "these are the user stuff");
+        toast.dismiss;
+        toast.success("successfully registered");
+        // console.log(user, "these are the user stuff");
       });
     onRouteChange("signin");
-    console.log("Register submitted with details:", email, password, name);
+    // console.log("Register submitted with details:", email, password, name);
   };
 
   return (

@@ -4,6 +4,18 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipboardJS from "clipboard";
 import brain from "../assets/brain.png";
+import brain2 from "/brain2.svg";
+
+const toastObj = {
+  position: "top-right",
+  autoClose: 1000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "colored",
+};
 
 export default function Logo({ route, onRouteChange }) {
   const handleCopyToClipboard = (text) => {
@@ -11,11 +23,11 @@ export default function Logo({ route, onRouteChange }) {
       text: () => text,
     });
     clipboard.on("success", () => {
-      toast.success("Copied to clipboard!");
+      toast.success("Copied to clipboard!", toastObj);
       clipboard.destroy();
     });
     clipboard.on("error", () => {
-      toast.error("Failed to copy to clipboard!");
+      toast.error("Failed to copy to clipboard!", toastObj);
       clipboard.destroy();
     });
     clipboard.onClick(event);
@@ -43,40 +55,8 @@ export default function Logo({ route, onRouteChange }) {
                 login
               </span>
               :
-              <br />
-              <div className="flex items-center">
-                <img
-                  src="https://www.svgrepo.com/show/479446/email-14.svg"
-                  alt=""
-                  title="copy email"
-                  width="20px"
-                  className="mr-2"
-                />
-                <button
-                  className="clipboard-btn font-bold text-violet-500 hover:underline"
-                  onClick={() => handleCopyToClipboard("test@gmail.com")}
-                  title="copy"
-                >
-                  test@gmail.com
-                </button>
-              </div>
-              <div className="flex items-center mt-2">
-                <img
-                  src="https://www.svgrepo.com/show/274446/key-password.svg"
-                  alt=""
-                  title="copy password"
-                  width="20px"
-                  className="mr-2"
-                />
-                <button
-                  className="clipboard-btn font-bold text-violet-500 hover:underline"
-                  onClick={() => handleCopyToClipboard("test")}
-                  title="copy"
-                >
-                  test
-                </button>
-              </div>
             </p>
+            {/* Rest of your content */}
           </div>
         </div>
       </div>
