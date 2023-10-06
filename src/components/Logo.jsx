@@ -53,40 +53,39 @@ export default function Logo({ route, onRouteChange }) {
                 login
               </span>
               :
-              <br />
-              <div className="flex items-center">
-                <img
-                  src="https://www.svgrepo.com/show/479446/email-14.svg"
-                  alt=""
-                  title="copy email"
-                  width="20px"
-                  className="mr-2"
-                />
-                <button
-                  className="clipboard-btn font-bold text-violet-500 hover:underline"
-                  onClick={() => handleCopyToClipboard("test@gmail.com")}
-                  title="copy"
-                >
-                  test@gmail.com
-                </button>
-              </div>
-              <div className="flex items-center mt-2">
-                <img
-                  src="https://www.svgrepo.com/show/274446/key-password.svg"
-                  alt=""
-                  title="copy password"
-                  width="20px"
-                  className="mr-2"
-                />
-                <button
-                  className="clipboard-btn font-bold text-violet-500 hover:underline"
-                  onClick={() => handleCopyToClipboard("test")}
-                  title="copy"
-                >
-                  test
-                </button>
-              </div>
             </p>
+            <div className="flex items-center">
+              <img
+                src="https://www.svgrepo.com/show/479446/email-14.svg"
+                alt=""
+                title="copy email"
+                width="20px"
+                className="mr-2"
+              />
+              <button
+                className="clipboard-btn font-bold text-violet-500 hover:underline"
+                onClick={() => handleCopyToClipboard("test@gmail.com")}
+                title="copy"
+              >
+                test@gmail.com
+              </button>
+            </div>
+            <div className="flex items-center mt-2">
+              <img
+                src="https://www.svgrepo.com/show/274446/key-password.svg"
+                alt=""
+                title="copy password"
+                width="20px"
+                className="mr-2"
+              />
+              <button
+                className="clipboard-btn font-bold text-violet-500 hover:underline"
+                onClick={() => handleCopyToClipboard("test")}
+                title="copy"
+              >
+                test
+              </button>
+            </div>
           </div>
         </div>
       </div>
