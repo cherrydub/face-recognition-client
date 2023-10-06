@@ -14,6 +14,11 @@ export default function SignIn({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const autoFillDetails = () => {
+    setEmail("test@gmail.com");
+    setPassword("test");
+  };
+
   const handleSubmit = (e) => {
     toast.loading("signing in...", { duration: 0 });
     e.preventDefault();
@@ -76,7 +81,7 @@ export default function SignIn({
   return (
     <div className=" flex justify-center items-start h-screen">
       <form
-        className="bg-white bg-opacity-75  w-64 shadow-md rounded px-8 pt-6 pb-8 "
+        className="bg-white bg-opacity-100 border-2 rounded-lg w-96 shadow-md px-8 pt-6 pb-8 "
         onSubmit={handleSubmit}
       >
         <h1 className="text-center font-bold">SIGN IN</h1>
@@ -98,6 +103,7 @@ export default function SignIn({
             required
           />
         </div> */}
+
         <div className="mb-4">
           <label
             className="block text-black text-sm font-bold mb-2"
@@ -131,6 +137,22 @@ export default function SignIn({
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+        </div>
+        <div className="flex items-center my-2">
+          <img
+            src="https://www.svgrepo.com/show/506467/copy.svg"
+            alt=""
+            title="copy password"
+            width="20px"
+            className="mr-2"
+          />
+          <button
+            className="clipboard-btn font-bold text-violet-500 hover:underline"
+            onClick={() => autoFillDetails()}
+            title="autofill email & password"
+          >
+            autofill demo login
+          </button>
         </div>
         <div className="flex items-center justify-center">
           <button

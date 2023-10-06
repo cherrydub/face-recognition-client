@@ -47,7 +47,7 @@ export default function Register({
   return (
     <div className="flex justify-center items-start h-screen">
       <form
-        className="bg-white bg-opacity-75 w-64 shadow-md rounded px-8 pt-6 pb-8 "
+        className="bg-white border-2 w-96 shadow-md rounded-lg px-8 pt-6 pb-8 "
         onSubmit={handleSubmit}
       >
         <h1 className="text-center font-bold">REGISTER</h1>
