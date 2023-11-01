@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
+import LoadingIcons, { SpinningCircles } from "react-loading-icons";
 
 const serverApi =
   import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
@@ -13,6 +14,7 @@ export default function SignIn({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setisLoading] = useState(false);
 
   const autoFillDetails = () => {
     setEmail("test@gmail.com");
@@ -21,6 +23,7 @@ export default function SignIn({
 
   const handleSubmit = (e) => {
     toast.loading("signing in...", { duration: 0 });
+    setisLoading(true);
     e.preventDefault();
 
     axios
@@ -38,10 +41,11 @@ export default function SignIn({
             entries: user.entries,
             joined: user.joined,
           });
-          toast.dismiss();
+          // toast.dismiss();
           toast.success("signed in");
           // console.log("changing in console", user);
           onRouteChange("home");
+          setisLoading(false);
           // console.log("Sign in submitted with details:", email, password);
         } else {
           console.log("not success? error");
@@ -159,7 +163,7 @@ export default function SignIn({
             className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Sign In
+            {isLoading ? <SpinningCircles height={"1.4rem"} /> : "Sign In"}{" "}
           </button>
           {/* <button
             className="hidden bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
